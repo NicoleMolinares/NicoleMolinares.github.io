@@ -20,78 +20,44 @@
 
     .gallery-section { padding: 120px 1% 50px; max-width: 98%; margin: auto; }
     
-    /* --- DROPDOWN STYLING --- */
-    details {
-      margin-bottom: 40px;
-      padding-left: 24px;
-    }
-
-    summary {
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      font-weight: 300;
-      color: #aaa;
-      cursor: pointer;
-      list-style: none; /* Removes default arrow */
-      transition: color 0.3s;
-    }
-
+    details { margin-bottom: 20px; padding-left: 24px; }
+    summary { letter-spacing: 5px; text-transform: uppercase; font-size: 0.9rem; font-weight: 300; color: #aaa; cursor: pointer; list-style: none; transition: color 0.3s; }
     summary:hover { color: #fff; }
+    summary::before { content: '►'; display: inline-block; font-size: 0.7rem; margin-right: 10px; transition: transform 0.3s; }
+    details[open] summary::before { transform: rotate(90deg); }
 
-    /* Custom arrow for the summary */
-    summary::before {
-      content: '►';
-      display: inline-block;
-      font-size: 0.7rem;
-      margin-right: 10px;
-      transition: transform 0.3s;
-    }
+    .description-content { padding: 15px 0 0 20px; color: #888; font-size: 0.85rem; line-height: 1.6; max-width: 800px; border-left: 1px solid #333; margin-top: 10px; }
 
-    details[open] summary::before {
-      transform: rotate(90deg);
-    }
-
-    .description-content {
-      padding: 15px 0 0 20px;
-      color: #888;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      max-width: 800px;
-      border-left: 1px solid #333;
-      margin-top: 10px;
-    }
-
-    /* --- GALLERY GRID --- */
     .gallery-grid { 
       display: grid; 
       grid-template-columns: repeat(6, 1fr); 
       gap: 15px; 
+      margin-bottom: 80px; 
     }
 
     @media (max-width: 1200px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); } }
     @media (max-width: 800px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 500px) { .gallery-grid { grid-template-columns: 1fr; } }
     
-    .work-card { 
-      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); 
-      border-radius: 6px; overflow: hidden; transition: 0.4s; 
-    }
+    .work-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; overflow: hidden; transition: 0.4s; }
     .work-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.4); }
     .work-card img { width: 100%; height: 220px; object-fit: contain; cursor: pointer; image-rendering: pixelated; }
     .work-info { padding: 12px; font-size: 0.8rem; color: #ccc; }
     .work-info b { color: #fff; display: block; margin-bottom: 3px; text-transform: uppercase; }
 
-    /* --- MODAL --- */
     #modal01 { background: rgba(0,0,0,0.95); z-index: 2000; display: none; align-items: center; justify-content: center; }
     .modal-container { position: relative; width: 90%; height: 90%; display: flex; justify-content: center; align-items: center; }
-    #img01 { max-width: 85%; max-height: 85vh; object-fit: contain; image-rendering: pixelated; transition: transform 0.2s ease-out; }
+    
+    #img01 { 
+      height: 80vh; width: 80vh; object-fit: contain; image-rendering: pixelated; 
+      background: white; border: 2px solid #fff; transition: transform 0.2s ease-out; 
+    }
+
     .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); color: white; font-size: 24px; padding: 15px 20px; cursor: pointer; border-radius: 50%; border: none; z-index: 2100; transition: 0.3s;}
     .nav-arrow:hover { background: #fff; color: #000; }
     .arrow-left { left: 10px; }
     .arrow-right { right: 10px; }
     .close-btn { position: absolute; top: 20px; right: 30px; font-size: 40px; color: white; cursor: pointer; z-index: 2200; }
-
   </style>
 </head>
 <body>
@@ -111,59 +77,77 @@
   </nav>
 
   <main class="gallery-section">
-    <h2 style="letter-spacing: 10px; text-transform: uppercase; margin-bottom: 5px; border-left: 4px solid #fff; padding-left: 20px;">Pixel Illustrations / Animations</h2>
+    <h2 style="letter-spacing: 10px; text-transform: uppercase; margin-bottom: 30px; border-left: 4px solid #fff; padding-left: 20px;">Pixel Illustrations / Animations</h2>
     
-    <details>
+    <details open>
       <summary>Bready or Knot Art Assets</summary>
       <div class="description-content">
-        This collection features character animations and environmental assets created for <i>Bready or Knot</i>. 
-        Focusing on expressive pixel movement, these sprites were designed to maintain a consistent 
-        visual style while showcasing distinct enemy behaviors and player feedback.
+        Comprehensive sprite sheets and animations for <i>Bready or Knot</i>, featuring the main character, diverse enemies, and environmental mechanics.
       </div>
     </details>
 
-    <div class="gallery-grid" id="portfolio-gallery">
-      <div class="work-card"><img src="images/Bready or Knot/evilbaguetteWALKING.gif" onclick="openGallery(0)" alt="Baguette Walking"><div class="work-info"><b>Evil Baguette</b> Walking cycle.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/EvilBaguetteIDLE.gif" onclick="openGallery(1)" alt="Baguette Idle"><div class="work-info"><b>Evil Baguette</b> Idle animation.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/evil baguette JUMP.gif" onclick="openGallery(2)" alt="Baguette Jump"><div class="work-info"><b>Evil Baguette</b> Jump cycle.</div></div>
+    <div class="gallery-grid" id="grid-bready">
+      <div class="work-card"><img src="images/Bready or Knot/evilbaguetteWALKING.gif" alt="Baguette Walking"><div class="work-info"><b>Evil Baguette</b> Walking cycle.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/EvilBaguetteIDLE.gif" alt="Baguette Idle"><div class="work-info"><b>Evil Baguette</b> Idle animation.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/evil baguette JUMP.gif" alt="Baguette Jump"><div class="work-info"><b>Evil Baguette</b> Jump cycle.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/EvilBaguetteWalkingMagicTopHat.gif" alt="Top Hat Walk"><div class="work-info"><b>Evil Baguette</b> Walk w/ Hat.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/EvilBaguetteIdleMagicTopHat.gif" alt="Top Hat Idle"><div class="work-info"><b>Evil Baguette</b> Idle w/ Hat.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/MagicTopHat.gif" alt="Magic Top Hat"><div class="work-info"><b>Magic Tophat</b> Standalone.</div></div>
       
-      <div class="work-card"><img src="images/Bready or Knot/EvilBaguetteWalkingMagicTopHat.gif" onclick="openGallery(3)" alt="Baguette Top Hat Walk"><div class="work-info"><b>Evil Baguette</b> Walk w/ Magic Top Hat.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/EvilBaguetteIdleMagicTopHat.gif" onclick="openGallery(4)" alt="Baguette Top Hat Idle"><div class="work-info"><b>Evil Baguette</b> Idle w/ Magic Top Hat.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/MagicTopHat.gif" onclick="openGallery(5)" alt="Magic Top Hat"><div class="work-info"><b>Evil Baguette Magic Tophat</b> Standalone Magic Top Hat.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/asparagusRUN.gif" alt="Asparagus Run"><div class="work-info"><b>Asparagus</b> Enemy run.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/asparagusIDLE.gif" alt="Asparagus Idle"><div class="work-info"><b>Asparagus</b> Enemy idle.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/asparagusATTACK.gif" alt="Asparagus Attack"><div class="work-info"><b>Asparagus</b> Enemy attack.</div></div>
       
-      <div class="work-card"><img src="images/Bready or Knot/asparagusRUN.gif" onclick="openGallery(6)" alt="Asparagus Run"><div class="work-info"><b>Bready or Knot</b> Enemy Asparagus run.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/asparagusIDLE.gif" onclick="openGallery(7)" alt="Asparagus Idle"><div class="work-info"><b>Bready or Knot</b> Enemy Asparagus idle.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/asparagusATTACK.gif" onclick="openGallery(8)" alt="Asparagus Attack"><div class="work-info"><b>Bready or Knot</b> Enemy Asparagus attack.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/GoodButters.gif" alt="Good Butters"><div class="work-info"><b>Good Butters</b> Idle.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/GoodButtersDeath.gif" alt="Butters Death"><div class="work-info"><b>Good Butters</b> Death.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/GoodButtersDeadBody.png" alt="Butters Body"><div class="work-info"><b>Good Butters</b> Dead body.</div></div>
       
-      <div class="work-card"><img src="images/Bready or Knot/GoodButters.gif" onclick="openGallery(9)" alt="Good Butters"><div class="work-info"><b>Bready or Knot</b> Good Butters idle.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/GoodButtersDeath.gif" onclick="openGallery(10)" alt="Butters Death"><div class="work-info"><b>Bready or Knot</b> Good Butters death animation.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/GoodButtersDeadBody.png" onclick="openGallery(11)" alt="Butters Body"><div class="work-info"><b>Bready or Knot</b> Good Butters dead body.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/CherryTomatoesWALKING.gif" alt="Tomato Walk"><div class="work-info"><b>Cherry Tomato</b> Walk.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/CherryTomatoesIDLE.gif" alt="Tomato Idle"><div class="work-info"><b>Cherry Tomato</b> Idle.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/CherryTomatoesEXPLODE.gif" alt="Tomato Explode"><div class="work-info"><b>Cherry Tomato</b> Explosion.</div></div>
       
-      <div class="work-card"><img src="images/Bready or Knot/CherryTomatoesWALKING.gif" onclick="openGallery(12)" alt="Tomato Walk"><div class="work-info"><b>Bready or Knot</b> Cherry Tomato walk cycle.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/CherryTomatoesIDLE.gif" onclick="openGallery(13)" alt="Tomato Idle"><div class="work-info"><b>Bready or Knot</b> Cherry Tomato idle cycle.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/CherryTomatoesEXPLODE.gif" onclick="openGallery(14)" alt="Tomato Explode"><div class="work-info"><b>Bready or Knot</b> Cherry Tomato explosion VFX.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/YeastBeastWALKING.gif" alt="Yeast Walk"><div class="work-info"><b>Yeast Beast</b> Walk.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/YeastBeastIDLE.gif" alt="Yeast Idle"><div class="work-info"><b>Yeast Beast</b> Idle.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/YeastBeastJUMP.gif" alt="Yeast Jump"><div class="work-info"><b>Yeast Beast</b> Jump.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/YeastBeastATTACK.gif" alt="Yeast Attack"><div class="work-info"><b>Yeast Beast</b> Attack.</div></div>
       
-      <div class="work-card"><img src="images/Bready or Knot/YeastBeastWALKING.gif" onclick="openGallery(15)" alt="Yeast Beast Walk"><div class="work-info"><b>Bready or Knot</b> Yeast Beast walking.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/YeastBeastIDLE.gif" onclick="openGallery(16)" alt="Yeast Beast Idle"><div class="work-info"><b>Bready or Knot</b> Yeast Beast idle.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/YeastBeastJUMP.gif" onclick="openGallery(17)" alt="Yeast Beast Jump"><div class="work-info"><b>Bready or Knot</b> Yeast Beast jump.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/Dreadroll.gif" alt="Dreadroll"><div class="work-info"><b>Dreadroll</b> Enemy animation.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/Peas.gif" alt="Peas"><div class="work-info"><b>Enemy Peas</b> Sprite.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/SpringBeanPeeling.gif" alt="Spring Bean"><div class="work-info"><b>Spring Bean</b> Peeling.</div></div>
       
-      <div class="work-card"><img src="images/Bready or Knot/YeastBeastATTACK.gif" onclick="openGallery(15)" alt="Yeast Beast Walk"><div class="work-info"><b>Bready or Knot</b> Yeast Beast walking.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/CheckpointFlag.png" onclick="openGallery(16)" alt="Yeast Beast Idle"><div class="work-info"><b>Bready or Knot</b> Yeast Beast idle.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/DoctorCheckpointFlag.png" onclick="openGallery(17)" alt="Yeast Beast Jump"><div class="work-info"><b>Bready or Knot</b> Yeast Beast jump.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/CheckpointFlag.png" alt="Checkpoint"><div class="work-info"><b>Checkpoint</b> Flag.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/DoctorCheckpointFlag.png" alt="Doctor Checkpoint"><div class="work-info"><b>Doctor</b> Checkpoint.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/CrackerSpikes.gif" alt="Cracker Spikes"><div class="work-info"><b>Cracker Spikes</b> Trap.</div></div>
       
-      <div class="work-card"><img src="images/Bready or Knot/Cookie.gif" onclick="openGallery(15)" alt="Yeast Beast Walk"><div class="work-info"><b>Bready or Knot</b> Yeast Beast walking.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/Cookie2.gif" onclick="openGallery(16)" alt="Yeast Beast Idle"><div class="work-info"><b>Bready or Knot</b> Yeast Beast idle.</div></div>
-      <div class="work-card"><img src="images/Bready or Knot/CrackerSpikes.gif" onclick="openGallery(17)" alt="Yeast Beast Jump"><div class="work-info"><b>Bready or Knot</b> Yeast Beast jump.</div></div>
-    
+      <div class="work-card"><img src="images/Bready or Knot/Cookie.gif" alt="Cookie 1"><div class="work-info"><b>Cookie</b> Variant A.</div></div>
+      <div class="work-card"><img src="images/Bready or Knot/Cookie2.gif" alt="Cookie 2"><div class="work-info"><b>Cookie</b> Variant B.</div></div>
+    </div>
+
     <details>
       <summary>Harpoon Bird Fishing Art Assets</summary>
       <div class="description-content">
-        This collection features character animations and environmental assets created for <i>Bready or Knot</i>. 
-        Focusing on expressive pixel movement, these sprites were designed to maintain a consistent 
-        visual style while showcasing distinct enemy behaviors and player feedback.
+        Visual assets for <i>Harpoon Bird Fishing</i>, showcasing character movement and specialized fishing mechanics.
       </div>
     </details>
 
+    <div class="gallery-grid" id="grid-harpoon">
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/SeagullAnimation.gif" alt="Harpoon Walk"><div class="work-info"><b>Harpoon Bird</b> Walking.</div></div>
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/Eagle.png" alt="Harpoon Idle"><div class="work-info"><b>Harpoon Bird</b> Idle.</div></div>
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/Duck.png" alt="Harpoon Jump"><div class="work-info"><b>Harpoon Bird</b> Jump.</div></div>
+    
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/Grandpa.png" alt="Harpoon Walk"><div class="work-info"><b>Harpoon Bird</b> Walking.</div></div>
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/BackShootIdle.gif" alt="Harpoon Idle"><div class="work-info"><b>Harpoon Bird</b> Idle.</div></div>
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/BackIdle.gif" alt="Harpoon Jump"><div class="work-info"><b>Harpoon Bird</b> Jump.</div></div>
+    
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/FrontIdle.gif" alt="Harpoon Walk"><div class="work-info"><b>Harpoon Bird</b> Walking.</div></div>
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/FrontWalk.gif" alt="Harpoon Idle"><div class="work-info"><b>Harpoon Bird</b> Idle.</div></div>
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/SideIdleLEft.gif" alt="Harpoon Jump"><div class="work-info"><b>Harpoon Bird</b> Jump.</div></div>
+    
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/Grandpa.png" alt="Harpoon Walk"><div class="work-info"><b>Harpoon Bird</b> Walking.</div></div>
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/BackShootIdle.gif" alt="Harpoon Idle"><div class="work-info"><b>Harpoon Bird</b> Idle.</div></div>
+      <div class="work-card"><img src="images/Harpoon Bird Fishing/BackIdle.gif" alt="Harpoon Jump"><div class="work-info"><b>Harpoon Bird</b> Jump.</div></div>
+    
+    
     </div>
   </main>
 
@@ -178,7 +162,7 @@
 
   <script>
     let currentIdx = 0;
-    const galleryItems = document.querySelectorAll('#portfolio-gallery img');
+    const galleryItems = document.querySelectorAll('.work-card img');
     const modal = document.getElementById("modal01");
     const modalImg = document.getElementById("img01");
 

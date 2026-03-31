@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
   
   <style>
-    /* --- SHARED CORE STYLES --- */
     body, html {
       height: 100%; margin: 0;
       font-family: 'Inter', sans-serif;
@@ -26,10 +25,9 @@
       background: none; border: none; cursor: pointer;
     }
 
-    /* --- UPDATED GALLERY STYLING (FULL WIDTH) --- */
     .gallery-section { 
-      padding: 120px 1% 50px; /* Reduced side padding to 1% */
-      max-width: 98%; /* Stretches nearly to the edges */
+      padding: 120px 1% 50px; 
+      max-width: 98%;
       margin: auto; 
     }
 
@@ -39,7 +37,7 @@
       gap: 15px;
     }
 
-    /* Responsive adjustments */
+
     @media (max-width: 1200px) {
       .gallery-grid { grid-template-columns: repeat(4, 1fr); }
     }
@@ -66,7 +64,7 @@
 
     .work-card img { 
       width: 100%; 
-      height: 220px; /* Increased height to match wider layout */
+      height: 220px;
       object-fit: cover; 
       cursor: pointer; 
       filter: grayscale(20%); 
@@ -84,7 +82,7 @@
 
     .work-info b { color: #fff; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 1px; }
 
-    /* --- ENHANCED MODAL & ARROWS --- */
+  
     #modal01 { 
       background-color: rgba(0,0,0,0.95); 
       z-index: 2000; 
