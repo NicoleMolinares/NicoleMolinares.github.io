@@ -7,7 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
   
   <style>
-    /* --- SPLASH SCREEN STYLES --- */
+    body, html {
+      height: 100%; margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #000; color: white;
+      scroll-behavior: smooth;
+    }
+
     #splash-screen {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -15,13 +21,6 @@
       display: flex; justify-content: center; align-items: center;
       z-index: 10000;
       transition: opacity 0.4s ease;
-    }
-
-    .slash-wrapper { 
-      position: relative; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .name-style {
@@ -33,7 +32,6 @@
       white-space: nowrap;
     }
 
-    /* Zooming animation */
     #zoom-text {
       animation: superZoom 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -43,47 +41,18 @@
       100% { transform: scale(1.1); opacity: 1; filter: blur(0); }
     }
 
-    /* Diagonal Slash Parts */
-    .slash-part {
-      position: absolute;
-      opacity: 0;
-    }
+    .slash-part { position: absolute; opacity: 0; }
+    .top-diagonal { clip-path: polygon(0 0, 100% 0, 100% 20%, 0 80%); }
+    .bottom-diagonal { clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%); }
 
-    /* Top Left Half */
-    .top-diagonal { 
-      clip-path: polygon(0 0, 100% 0, 100% 20%, 0 80%); 
-    }
-
-    /* Bottom Right Half */
-    .bottom-diagonal { 
-      clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%); 
-    }
-
-    /* The Slash Movement */
-    .animate-top {
-      animation: slashOutTop 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    }
-
-    .animate-bottom {
-      animation: slashOutBottom 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    }
+    .animate-top { animation: slashOutTop 0.6s ease forwards; }
+    .animate-bottom { animation: slashOutBottom 0.6s ease forwards; }
 
     @keyframes slashOutTop {
-      0% { transform: translate(0,0) rotate(0deg); opacity: 1; }
       100% { transform: translate(-100px, -100px) rotate(-15deg); opacity: 0; }
     }
-
     @keyframes slashOutBottom {
-      0% { transform: translate(0,0) rotate(0deg); opacity: 1; }
       100% { transform: translate(100px, 100px) rotate(15deg); opacity: 0; }
-    }
-
-    /* --- MAIN SITE STYLES --- */
-    body, html {
-      height: 100%; margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #000; color: white;
-      scroll-behavior: smooth;
     }
 
     .bg-fixed {
@@ -91,7 +60,6 @@
       height: 100vh;
       background-attachment: fixed;
       background-position: center;
-      background-repeat: no-repeat;
       background-size: cover;
       display: flex; align-items: center; justify-content: center; flex-direction: column;
     }
@@ -107,19 +75,35 @@
     }
 
     .content-section {
-      padding: 100px 5%; /* Adjusted padding for better fit */
-      background-color: transparent; 
-      line-height: 1.8; 
-      max-width: 1200px; /* INCREASED WIDTH HERE */
-      margin: auto;
+      padding: 100px 5%; line-height: 1.8; 
+      max-width: 1200px; margin: auto;
     }
 
     .glass-card {
       background: rgba(0, 0, 0, 0.7); 
       backdrop-filter: blur(10px);
-      padding: 60px; /* More internal padding for the wider look */
-      border-radius: 4px;
+      padding: 60px; border-radius: 4px;
       border: 1px solid rgba(255, 255, 255, 0.1); margin-top: -50px; 
+    }
+
+    .resume-btn {
+      display: inline-block;
+      padding: 12px 35px;
+      background-color: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 700;
+      transition: 0.3s;
+      border-radius: 4px;
+      margin-top: 30px;
+    }
+
+    .resume-btn:hover {
+      background-color: #fff;
+      color: #000;
     }
 
     .profile-img {
@@ -131,23 +115,23 @@
 <body>
 
   <div id="splash-screen">
-    <div class="slash-wrapper">
+    <div style="position: relative; display: flex; justify-content: center; align-items: center;">
       <div id="zoom-text" class="name-style">PORTFOLIO</div>
-      <div id="top-half" class="name-style slash-part top-diagonal">PORTFOLIO.</div>
+      <div id="top-half" class="name-style slash-part top-diagonal">PORTFOLIO</div>
       <div id="bottom-half" class="name-style slash-part bottom-diagonal">PORTFOLIO</div>
     </div>
   </div>
 
   <nav class="nav-container">
     <a href="#home">Home</a>
-    <a href="drawing.html">Work</a>
-    <a href="music.html">Music</a>
+    <a href="drawing.html">Works</a>
+    <a href="game.html">Games</a>
     <a href="contact.html">Contact</a>
   </nav>
 
   <header class="bg-fixed" id="home">
     <img src="images/12.png" alt="Profile" class="profile-img">
-    <h1 class="name-style" style="font-size: 5vw; letter-spacing: 10px;">NICOLE M.</h1>
+    <h1 class="name-style" style="font-size: 5vw; letter-spacing: 10px;">NICOLE Molinares</h1>
     <p style="letter-spacing: 5px; opacity: 0.8;">Illustrator &bull; Animator</p>
   </header>
 
@@ -157,34 +141,15 @@
       
       <p>I am Nicole Molinares, a senior in the Gaming and Multimedia Program at Questar III. Some of my hobbies include clay sculpting, binging anime, and drawing. I especially enjoy reading a variety of books, including novels, comics, and short stories spanning from genres like romance to horror, or fiction to non-fiction. I enjoy reading the unique and original stories people come up with, and, because of this, I also want to create unique and original pieces that will resonate with others. I am a fast learner and always try to improve my skills. Even if I'm decent at it, I want to be the best I can be. I joined the program to learn more about the gaming industry and to discover career options I could pursue in the field. I've always loved creating stories, whether it be comics, illustration, or writing a book. When I started Gaming & Multimedia at Questar III, I realized that there was more than just telling people a story. I realized that I could actually make people experience it themselves through a game. I was ecstatic because making the person part of the experience would make the story more influential for the player.</p>
       
-      <p>In the Gaming and Multimedia class, we have covered units such as Game Design, 2D Art & Animation, and Game Audio. Some projects we have worked on are creating a website, designing a team game, level design, logo creation, character design, and storyboarding. I especially enjoyed these projects because I was able to put my drawing skills to use and improve and expand on them. I also learned other skill sets like programming and making audio. One project that really stood out to me was creating a game with others in my class. This project taught me how each role in the development of a game is crucial. Each person needs the other; sometimes, if one person doesn't have a task completed, the other person can't work without it. This shows how teamwork and communication are important. Within the program,  I have taken on roles such as concept artist, animator, programmer, and game designer. I've learned a lot throughout the program, like using CSS, JavaScript, Construct 3, GitHub, Audacity, Reaper, and even techniques on how to improve my animation. I've used these skills to create my own game and help others create theirs, too.
-</p>
+      <p>In the Gaming and Multimedia class, we have covered units such as Game Design, 2D Art & Animation, and Game Audio. Some projects we have worked on are creating a website, designing a team game, level design, logo creation, character design, and storyboarding. I especially enjoyed these projects because I was able to put my drawing skills to use and improve and expand on them. I also learned other skill sets like programming and making audio. One project that really stood out to me was creating a game with others in my class. This project taught me how each role in the development of a game is crucial. Each person needs the other; sometimes, if one person doesn't have a task completed, the other person can't work without it. This shows how teamwork and communication are important. Within the program,  I have taken on roles such as concept artist, animator, programmer, and game designer. I've learned a lot throughout the program, like using CSS, JavaScript, Construct 3, GitHub, Audacity, Reaper, and even techniques on how to improve my animation. I've used these skills to create my own game and help others create theirs, too.</p>
 
-      <p>My goal in the field is to become an animator and/or illustrator for games and films. I want my art to reach people and to be seen by others. I plan to reach this goal by improving my art and creating as many animations/games, even if they aren't perfect. Creating as you go, even if you aren't at your best yet, is the best way to learn and grow from your mistakes.
-</p>
+      <p>My goal in the field is to become an animator and/or illustrator for games and films. I want my art to reach people and to be seen by others. I plan to reach this goal by improving my art and creating as many animations/games, even if they aren't perfect. Creating as you go, even if you aren't at your best yet, is the best way to learn and grow from your mistakes.</p>
 
-      <div style="text-align: center; margin-top: 30px;">
-        <a href=" " 
-           target="_blank" 
-           style="
-            display: inline-block;
-            padding: 12px 35px;
-            background-color: transparent;
-            color: #fff;
-            border: 2px solid #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 14px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-           "
-           onmouseover="this.style.backgroundColor='#fff'; this.style.color='#000';"
-           onmouseout="this.style.backgroundColor='transparent'; this.style.color='#fff';">
-           View My Resume
-        </a>
-      </div>
+     <div style="text-align: center;">
+    <a href="Resume.pdf" target="_blank" class="resume-btn">
+    View My Resume
+    </a>
+    </div>
       
       <hr style="border-color: rgba(255,255,255,0.1); margin: 40px 0;">
       
@@ -203,7 +168,6 @@
 
       setTimeout(() => {
         zoomText.style.display = 'none';
-        
         topHalf.style.opacity = '1';
         bottomHalf.style.opacity = '1';
 

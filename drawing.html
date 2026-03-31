@@ -1,141 +1,218 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <title>Nicole M Portfolio</title>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <title>Nicole M | Work</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<style>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- SHARED CORE STYLES --- */
+    body, html {
+      height: 100%; margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #000; color: white;
+    }
 
+    .nav-container {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      padding: 20px 50px; display: flex; justify-content: flex-end;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+    }
 
+    .nav-container a, .dropbtn {
+      color: white; text-decoration: none; margin-left: 30px;
+      font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+      background: none; border: none; cursor: pointer;
+    }
 
-</style>
+    /* --- UPDATED GALLERY STYLING (FULL WIDTH) --- */
+    .gallery-section { 
+      padding: 120px 1% 50px; /* Reduced side padding to 1% */
+      max-width: 98%; /* Stretches nearly to the edges */
+      margin: auto; 
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr); 
+      gap: 15px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 800px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .nav-container { padding: 15px 20px; justify-content: center; }
+    }
+
+    .work-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px; 
+      overflow: hidden;
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+
+    .work-card:hover { 
+      transform: translateY(-5px); 
+      border-color: rgba(255, 255, 255, 0.4); 
+    }
+
+    .work-card img { 
+      width: 100%; 
+      height: 220px; /* Increased height to match wider layout */
+      object-fit: cover; 
+      cursor: pointer; 
+      filter: grayscale(20%); 
+      transition: 0.4s; 
+    }
+
+    .work-card:hover img { filter: grayscale(0%); }
+
+    .work-info { 
+      padding: 12px; 
+      font-size: 0.8rem; 
+      color: #ccc; 
+      line-height: 1.4;
+    }
+
+    .work-info b { color: #fff; display: block; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* --- ENHANCED MODAL & ARROWS --- */
+    #modal01 { 
+      background-color: rgba(0,0,0,0.95); 
+      z-index: 2000; 
+      display: none; 
+      align-items: center; 
+      justify-content: center; 
+    }
+
+    .modal-container {
+      position: relative;
+      width: 90%;
+      height: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #img01 {
+      max-width: 85%;
+      max-height: 85vh;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 24px;
+      padding: 15px 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      user-select: none;
+      transition: 0.3s;
+      border: none;
+      z-index: 2100;
+    }
+
+    .nav-arrow:hover { background: #fff; color: #000; }
+    .arrow-left { left: 10px; }
+    .arrow-right { right: 10px; }
+
+    .close-btn {
+      position: absolute;
+      top: 20px; right: 30px;
+      font-size: 40px; color: white;
+      cursor: pointer; z-index: 2200;
+      line-height: 1;
+    }
+  </style>
 </head>
-<body style="background-color:rgb(37, 41, 46);">
+<body>
 
-  <div class="w3-top">
-    <div class="w3-row w3-padding w3-black" style="height:100px;">
-      <br>
-      <div class="w3-col s2">
-        <a href="index.html" class=" w3-black" style="color:#000000;"></a>
+  <nav class="nav-container">
+    <a href="index.html">Home</a>
+    <div class="w3-dropdown-hover">
+      <button class="dropbtn">Works</button>
+      <div class="w3-dropdown-content w3-bar-block w3-black w3-card-4">
+        <a href="#" class="w3-bar-item w3-button">Digital</a>
+        <a href="pixel.html" class="w3-bar-item w3-button">Pixel</a>
+        <a href="traditional.html" class="w3-bar-item w3-button">Traditional</a>
       </div>
-      
-      
-      
-      
-      <div class="w3-dropdown-hover w3-hide-small w3-col s2">
-        <a href="index.html" class="w3-button w3-block w3-black">HOME</a>
-     
-     
-     <div class="w3-dropdown-content w3-bar-block w3-card-4">
-          <a href="index.html" class="w3-bar-item w3-button">About Me</a>
-          <a href="contact.html" class="w3-bar-item w3-button">Contact</a>
-        </div>
-      </div>
-      
-      
-      
-      
-      
-      <div class="w3-dropdown-hover w3-hide-small w3-col s2">
-        <a href="#" class="w3-button w3-block w3-black">Drawings</a>
-     
-     
-     <div class="w3-dropdown-content w3-bar-block w3-card-4">
-          <a href="#" class="w3-bar-item w3-button">Digital</a>
-          <a href="pixel.html" class="w3-bar-item w3-button">Pixel</a>
-          <a href="traditional.html" class="w3-bar-item w3-button">Traditional</a>
-        </div>
-      </div>
+    </div>
+    <a href="game.html">games</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
+  <main class="gallery-section">
+    <h2 style="letter-spacing: 10px; text-transform: uppercase; margin-bottom: 40px; border-left: 4px solid #fff; padding-left: 20px;">Digital Illustrations</h2>
+    
+    <div class="gallery-grid" id="portfolio-gallery">
+      <div class="work-card"><img src="images/wizard.png" onclick="openGallery(0)" alt="Wizard"> <div class="work-info"><b>Finished</b> Sketch of comic characters.</div></div>
+      <div class="work-card"><img src="images/angel.png" onclick="openGallery(1)" alt="Angel"> <div class="work-info"><b>Finished</b> Angel sketch.</div></div>
+      <div class="work-card"><img src="images/asirpa.png" onclick="openGallery(2)" alt="Asirpa"> <div class="work-info"><b>In Progress</b> Golden Kamuy fanart.</div></div>
+      <div class="work-card"><img src="images/blue.png" onclick="openGallery(3)" alt="Blue OC"> <div class="work-info"><b>In Progress</b> Original character.</div></div>
+      <div class="work-card"><img src="images/clown.png" onclick="openGallery(4)" alt="Clown"> <div class="work-info"><b>Finished</b> Character design.</div></div>
+      <div class="work-card"><img src="images/Ene.png" onclick="openGallery(5)" alt="Ene"> <div class="work-info"><b>Illustration</b> Ene fanart.</div></div>
+      <div class="work-card"><img src="images/CinnamonBun.png" onclick="openGallery(6)" alt="Bun"> <div class="work-info"><b>Finished</b> Stuffed animal study.</div></div>
+    </div>
+  </main>
 
-
-      <div class="w3-col s2">
-        <a href="music.html" class="w3-button w3-block w3-black">Music</a>
-      </div>
-      <div class="w3-col s2">
-        <a href="game.html" class="w3-button w3-block w3-black">Game</a>
-      </div>
-     <!--  <div class="w3-col s2">
-        <a href="writings.html" class="w3-button w3-block w3-black">Writings</a>
-      </div> -->
+  <div id="modal01" class="w3-modal">
+    <span class="close-btn" onclick="closeGallery()">&times;</span>
+    <div class="modal-container">
+      <button class="nav-arrow arrow-left" onclick="changeImage(-1); event.stopPropagation();">&#10094;</button>
+      <img id="img01" src="" alt="Zoomed View">
+      <button class="nav-arrow arrow-right" onclick="changeImage(1); event.stopPropagation();">&#10095;</button>
     </div>
   </div>
 
+  <script>
+    let currentImgIndex = 0;
+    const images = Array.from(document.querySelectorAll('#portfolio-gallery img')).map(img => img.src);
 
-<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-  <div class="w3-display-middle" style="white-space:nowrap;">
-    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MY <span class="w3-hide-small">WEBSITE</span> LOGO</span>
-  </div>
-</div>
+    function openGallery(index) {
+      currentImgIndex = index;
+      document.getElementById("img01").src = images[currentImgIndex];
+      document.getElementById("modal01").style.display = "flex";
+    }
 
+    function closeGallery() {
+      document.getElementById("modal01").style.display = "none";
+    }
 
+    function changeImage(step) {
+      currentImgIndex += step;
+      if (currentImgIndex >= images.length) currentImgIndex = 0;
+      if (currentImgIndex < 0) currentImgIndex = images.length - 1;
+      document.getElementById("img01").src = images[currentImgIndex];
+    }
 
-
-<br><br><br><br>
-      <div class="w3-row-padding">
-        <div class="w3-container w3-third">
-          <img alt="cartoon drawing of my wizard characetrs" src="images/wizard.png" style="width:100%;cursor:pointer;right:200px;width: 600px; height: 370px;" 
-          onclick="onClick(this)" class="w3-hover-opacity"> <a style="color: aliceblue;  font-style: oblique;">(Finished) This is a sketch of some of my comic characters together.</a>
-        </div>
-        <div class="w3-container w3-third">
-          <img alt="a drawing of a woman angel" src="images/angel.png" style="width:100%;cursor:pointer;width: 600px; height: 370px; font-style: oblique;" 
-          onclick="onClick(this)" class="w3-hover-opacity"> (Finished) This is a quick sketch of an angel.
-        </div>
-        <div class="w3-container w3-third">
-          <img alt="character named asirpa from an anime called golden kamuy" src="images/asirpa.png" style="width:100%;cursor:pointer;width: 600px; height: 370px; font-style: oblique;" 
-          onclick="onClick(this)" class="w3-hover-opacity"> (in progress) This is fanart of a character called Asirpa from Golden Kamuy.
-        </div>
-        
-
-        <div class="w3-container w3-third"> <br>
-          <img alt="in progress art of oc" src="images/blue.png" style="width:100%;cursor:pointer;width: 600px; height: 370px; font-style: oblique;" 
-          onclick="onClick(this)" class="w3-hover-opacity"> (In Progress) 
-        </div>
-        <div class="w3-container w3-third"> <br>
-          <img alt="small drawing of a chibi clown" src="images/clown.png" style="width:100%;cursor:pointer;width: 600px; height: 370px; font-style: oblique;" 
-          onclick="onClick(this)" class="w3-hover-opacity"> (Finished) This is a sketch of a clown. I like to create random small creatures 
-          to experiment with character design. This time i chose a clown.
-        </div>
-        <div class="w3-container w3-third"> <br>
-          <img alt="character from an anime named ene" src="images/Ene.png" style="width:100%;cursor:pointer;width: 600px; height: 370px; font-style: oblique;" 
-          onclick="onClick(this)" class="w3-hover-opacity"> type here to add a description
-        </div>
-      </div>
-      
-
-      <div class="w3-container w3-third"> <br>
-        <img alt="drawing of a stuffed animal that is a cinnamon bun" src="images/CinnamonBun.png" style="width:100%;cursor:pointer;width: 600px; height: 370px; font-style: oblique;" 
-        onclick="onClick(this)" class="w3-hover-opacity"> type here to add a description
-      </div>
-   
-
-
-
-
-
-
-      <div id="modal01" class="w3-modal" onclick="this.style.display='none'"> <br><br><br><br><br>
-        <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-        <div class="w3-modal-content w3-animate-zoom">
-          <img alt="zoomed in image" src="images/CinnamonBun.png" id="img01" style="width:100%">
-        </div>
-      </div>
-      
-
-      <script>
-      function onClick(element) {
-        document.getElementById("img01").src = element.src;
-        document.getElementById("modal01").style.display = "block";
+    window.onclick = function(event) {
+      const modal = document.getElementById("modal01");
+      if (event.target == modal) {
+        closeGallery();
       }
-</script>
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (document.getElementById("modal01").style.display === "flex") {
+        if (e.key === "ArrowLeft") changeImage(-1);
+        if (e.key === "ArrowRight") changeImage(1);
+        if (e.key === "Escape") closeGallery();
+      }
+    });
+  </script>
 
 </body>
 </html>
-
-<!-- .pixelart{
-  image-rendering: pixalated;
-}
-
-auto, smooth, crisp-edges -->
